@@ -1,5 +1,27 @@
 [
   {
+    "name": "Column",
+    "description": "Layout a list of child widgets in the vertical direction.",
+    "categories": ["Basics"],
+    "subcategories": ["Multi-child layout widgets"],
+    "link": "https://api.flutter.dev/flutter/widgets/Column-class.html",
+    "image": "<svg viewBox='0 0 100 100'><rect x='0' y='0' width='100' height='100' fill='#3949ab'/><rect x='30' y='10' width='40' height='80' fill='#ffffff'/><rect x='40' y='15' width='20' height='20' fill='#4dd0e1'/><rect x='35' y='40' width='30' height='30' fill='#4dd0e1'/></svg>",
+    "code": "class Column extends Flex {\n  /// Creates a vertical array of children.\n  ///\n  /// The [mainAxisAlignment], [mainAxisSize], [crossAxisAlignment], and\n  /// [verticalDirection] arguments must not be null.\n  /// If [crossAxisAlignment] is [CrossAxisAlignment.baseline], then\n  /// [textBaseline] must not be null.\n  ///\n  /// The [textDirection] argument defaults to the ambient [Directionality], if\n  /// any. If there is no ambient directionality, and a text direction is going\n  /// to be necessary to disambiguate `start` or `end` values for the\n  /// [crossAxisAlignment], the [textDirection] must not be null.\n  Column({\n    super.key,\n    super.mainAxisAlignment,\n    super.mainAxisSize,\n    super.crossAxisAlignment,\n    super.textDirection,\n    super.verticalDirection,\n    super.textBaseline,\n    super.children,\n  }) : super(\n    direction: Axis.vertical,\n  );\n}",
+    "audioUrl": "https://raw.githubusercontent.com/WidgetsAcademy/curriculum/main/101-Widget_catalog/audio/column.mp3",
+    "version": "3.3.9"
+  },
+  {
+    "name": "Directionality",
+    "description": "A widget that determines the ambient directionality of text and text-direction-sensitive render objects.",
+    "categories": ["Basics"],
+    "subcategories": [],
+    "link": "https://api.flutter.dev/flutter/widgets/Directionality-class.html",
+    "image": "<img alt='' src='/assets/images/docs/catalog-widget-placeholder.png'>",
+    "code": "/// A widget that determines the ambient directionality of text and\n/// text-direction-sensitive render objects.\n///\n/// For example, [Padding] depends on the [Directionality] to resolve\n/// [EdgeInsetsDirectional] objects into absolute [EdgeInsets] objects.\nclass Directionality extends _UbiquitousInheritedWidget {\n/// Creates a widget that determines the directionality of text and\n/// text-direction-sensitive render objects.\n///\n/// The [textDirection] and [child] arguments must not be null.\nconst Directionality({\nsuper.key,\nrequired this.textDirection,\nrequired super.child,\n}) : assert(textDirection != null),\nassert(child != null);\n\n/// The text direction for this subtree.\nfinal TextDirection textDirection;\n\n/// The text direction from the closest instance of this class that encloses\n/// the given context.\n///\n/// If there is no [Directionality] ancestor widget in the tree at the given\n/// context, then this will throw a descriptive [FlutterError] in debug mode\n/// and an exception in release mode.\n///\n/// Typical usage is as follows:\n///\n/// ```dart\n/// TextDirection textDirection = Directionality.of(context);\n/// ```\n///\n/// See also:\n///\n///  * [maybeOf], which will return null if no [Directionality] ancestor\n///    widget is in the tree.\nstatic TextDirection of(BuildContext context) {\nassert(debugCheckHasDirectionality(context));\nfinal Directionality widget = context.dependOnInheritedWidgetOfExactType<Directionality>()!;\nreturn widget.textDirection;\n}\n\n/// The text direction from the closest instance of this class that encloses\n/// the given context.\n///\n/// If there is no [Directionality] ancestor widget in the tree at the given\n/// context, then this will return null.\n///\n/// Typical usage is as follows:\n///\n/// ```dart\n/// TextDirection? textDirection = Directionality.maybeOf(context);\n/// ```\n///\n/// See also:\n///\n///  * [of], which will throw if no [Directionality] ancestor widget is in the\n///    tree.\nstatic TextDirection? maybeOf(BuildContext context) {\nfinal Directionality? widget = context.dependOnInheritedWidgetOfExactType<Directionality>();\nreturn widget?.textDirection;\n}\n\n@override\nbool updateShouldNotify(Directionality oldWidget) => textDirection != oldWidget.textDirection;\n\n@override\nvoid debugFillProperties(DiagnosticPropertiesBuilder properties) {\nsuper.debugFillProperties(properties);\nproperties.add(EnumProperty<TextDirection>('textDirection', textDirection));\n}\n}\n\n",
+    "audioUrl": "https://raw.githubusercontent.com/WidgetsAcademy/curriculum/main/101-Widget_catalog/audio/directionality.mp3",
+    "version": "3.3.9"
+  },
+  {
     "name": "AbsorbPointer",
     "description": "A widget that absorbs pointers during hit testing. When absorbing is true, this widget prevents its subtree from receiving pointer events by terminating hit testing at itself. It still consumes space during layout and paints its child as usual. It just prevents its children from being the target of located events, because it returns true from RenderBox.hitTest.",
     "categories": [],
@@ -262,16 +284,6 @@
     "subcategories": [],
     "link": "https://api.flutter.dev/flutter/widgets/ClipRect-class.html",
     "image": "<svg viewBox='0 0 100 100'><defs><clipPath id='clip-rect'><rect x='10' y='20' width='60' height='60'/></clipPath></defs><rect x='0' y='0' width='100' height='100' fill='#3949ab'/><rect x='30' y='10' width='60' height='50' fill='#4dd0e1' opacity='0.05'/><rect x='10' y='20' width='60' height='60' fill='#ffffff'/><rect x='30' y='10' width='60' height='50' fill='#4dd0e1' clip-path='url(#clip-rect)'/></svg>"
-  },
-  {
-    "name": "Column",
-    "description": "Layout a list of child widgets in the vertical direction.",
-    "categories": ["Basics"],
-    "subcategories": ["Multi-child layout widgets"],
-    "link": "https://api.flutter.dev/flutter/widgets/Column-class.html",
-    "image": "<svg viewBox='0 0 100 100'><rect x='0' y='0' width='100' height='100' fill='#3949ab'/><rect x='30' y='10' width='40' height='80' fill='#ffffff'/><rect x='40' y='15' width='20' height='20' fill='#4dd0e1'/><rect x='35' y='40' width='30' height='30' fill='#4dd0e1'/></svg>",
-    "code": "class Column extends Flex {\n  /// Creates a vertical array of children.\n  ///\n  /// The [mainAxisAlignment], [mainAxisSize], [crossAxisAlignment], and\n  /// [verticalDirection] arguments must not be null.\n  /// If [crossAxisAlignment] is [CrossAxisAlignment.baseline], then\n  /// [textBaseline] must not be null.\n  ///\n  /// The [textDirection] argument defaults to the ambient [Directionality], if\n  /// any. If there is no ambient directionality, and a text direction is going\n  /// to be necessary to disambiguate `start` or `end` values for the\n  /// [crossAxisAlignment], the [textDirection] must not be null.\n  Column({\n    super.key,\n    super.mainAxisAlignment,\n    super.mainAxisSize,\n    super.crossAxisAlignment,\n    super.textDirection,\n    super.verticalDirection,\n    super.textBaseline,\n    super.children,\n  }) : super(\n    direction: Axis.vertical,\n  );\n}",
-    "audioUrl": "https://ia801802.us.archive.org/8/items/IGM-V7/IGM%20-%20Vol.%207/25%20Diablo%20-%20Tristram%20%28Blizzard%29.mp3"
   },
   {
     "name": "ConstrainedBox",
